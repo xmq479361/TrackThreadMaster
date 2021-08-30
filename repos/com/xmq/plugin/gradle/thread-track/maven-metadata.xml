@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.xmq.plugin.gradle</groupId>
+  <artifactId>thread-track</artifactId>
+  <versioning>
+    <versions>
+      <version>0.1.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20210830162230</lastUpdated>
+  </versioning>
+</metadata>

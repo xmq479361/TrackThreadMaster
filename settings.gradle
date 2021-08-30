@@ -1,0 +1,4 @@
+rootProject.name = "TrackThreadMaster"
+include ':app'
+include ':gradle_plugin_track_thread'
+include ':track_thread_model'

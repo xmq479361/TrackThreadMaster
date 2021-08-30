@@ -1,0 +1,26 @@
+apply plugin : "groovy"
+
+dependencies {
+    implementation fileTree(dir: "lib", includes: ["*.jar"])
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation "com.android.tools.build:gradle:4.0.1"
+//    compile project(":XBindAnnotation")
+    // ASM 相关依赖
+    implementation "org.ow2.asm:asm:9.1"
+    implementation "org.ow2.asm:asm-commons:9.1"
+}
+
+apply plugin : "maven"
+// 添加本地仓库发布
+group = "com.xmq.plugin.gradle"
+version = "0.1.0-SNAPSHOT"
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri("$rootDir/repos"))
+            pom.artifactId = "thread-track"
+        }
+    }
+}

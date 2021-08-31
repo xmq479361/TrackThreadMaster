@@ -39,7 +39,20 @@ threadTrack {
             from = "java/lang/Thread"
             to = "com/xmq/thread/DelegateThread"
         }
-//        "java/util/concurrent/ThreadPoolExecutor" "com/xmq/thread/DelegateThreadPoolExecutor"
+        ThreadPoolExecutor {
+            from = "java/util/concurrent/ThreadPoolExecutor"
+            to = "com/xmq/thread/DelegateThreadPoolExecutor"
+        }
+        Executors {
+            from = "java/util/concurrent/Executors"
+            to = "com/xmq/thread/DelegateExecutors"
+            method = "newCachedThreadPool"
+        }
+        Timer {
+            from = "java/util/Timer"
+            to = "com/xmq/thread/DelegateTimer"
+            method = "schedule"
+        }
     }
 }
 dependencies {

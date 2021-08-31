@@ -11,6 +11,12 @@ import org.gradle.api.Project
  */
 class XThreadExtension {
     boolean enabled
+    String format
+    /**
+     * 过滤的类package/name前缀
+     */
+    List<String> excludes = new LinkedList<>()
+
     NamedDomainObjectContainer<XThreadDelegate> generates
 
     XThreadExtension(Project project) {
@@ -20,6 +26,14 @@ class XThreadExtension {
 //            it.print()
 //        }
     }
+
+    /**
+     * 过滤的类package/name前缀
+     */
+    void excludes(String... clzs) {
+        this.excludes.addAll(clzs)
+    }
+
     void generates(Action<NamedDomainObjectContainer<XThreadDelegate>> action) {
         action.execute(generates)
         println(">>>XThreadExtension generates(): $enabled")

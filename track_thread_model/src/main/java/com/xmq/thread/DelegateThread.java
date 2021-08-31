@@ -60,6 +60,17 @@ public class DelegateThread extends Thread {
         super.run();
     }
 
+    public synchronized void start(String invokePointerName) {
+        invokeMethodName = invokePointerName;
+        super.start();
+    }
+
+
+    @Override
+    public synchronized void start() {
+        super.start();
+    }
+
     /**
      * {@code U+200B}: Zero-Width Space
      */

@@ -3,7 +3,11 @@ package com.xmq.track.thread;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -31,35 +35,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void runWithNewThreadRunable(View view) {
         Log.i(TAG, "runWithNewThreadRunable: ");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i(TAG, "runWithNewThreadRunable: " + Thread.currentThread().getName());
-            }
-        }).start();
+        new Thread(() -> Log.i(TAG, "runWithNewThreadRunable: " + Thread.currentThread().getName())).start();
     }
 
     public void runWithExcutorsThreadPools(View view) {
         Log.i(TAG, "runWithExcutorsThreadPools: ");
-        Executors.newCachedThreadPool().execute(new Runnable() {
-            @Override
-            public void run() {
-                Log.i(TAG, "runWithExcutorsThreadPools: " + Thread.currentThread().getName());
-            }
-        });
+        Executors.newCachedThreadPool().execute(() -> Log.i(TAG, "runWithExcutorsThreadPools: " + Thread.currentThread().getName()));
     }
 
     public void runWithNewThreadPools(View view) {
         Log.i(TAG, "runWithNewThreadPools: ");
-        new ThreadPoolExecutor(1, 1, 10, TimeUnit.SECONDS, new LinkedBlockingQueue()).execute(new Runnable() {
-            @Override
-            public void run() {
-                Log.i(TAG, "runWithNewThreadPools: " + Thread.currentThread().getName());
-            }
-        });
+        new ThreadPoolExecutor(1, 1, 10, TimeUnit.SECONDS, new LinkedBlockingQueue())
+                .execute(() -> Log.i(TAG, "runWithNewThreadPools: " + Thread.currentThread().getName()));
     }
 
     public void runWithAsyncTask(View view) {
         Log.i(TAG, "runWithAsyncTask: ");
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+            }
+        }, 10);
     }
 }

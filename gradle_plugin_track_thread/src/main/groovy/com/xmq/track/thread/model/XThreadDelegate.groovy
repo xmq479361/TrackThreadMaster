@@ -9,9 +9,13 @@ class XThreadDelegate {
     String from
     String to
     String format
+    /**
+     * 代理的方法； 默认为<init>
+     */
+    String method
     XThreadDelegate(String name) {
         this.name = name
-//        format = "${methodName}"
+        method = "<init>"
     }
 
     void print(){
